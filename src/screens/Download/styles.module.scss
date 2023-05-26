@@ -1,0 +1,42 @@
+@import "/src/styles/theme.scss";
+
+.download_main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  height: calc(100% - 4rem);
+  width: 100%;
+  padding: 1rem;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  @media (min-width: 800px) {
+    max-width: 1100px;
+  }
+
+  @media (min-height: 900px) {
+    padding-top: 5rem;
+    padding-bottom: 3rem;
+  }
+}
+
+.app_image_out {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+
+
+  img {
+    width: 100%;
+    max-height: 600px;
+    border-radius: 1rem;
+    object-fit: contain;
+  }
+}

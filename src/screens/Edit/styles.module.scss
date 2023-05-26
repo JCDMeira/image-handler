@@ -1,0 +1,11 @@
+@import "/src/styles/theme.scss";
+
+.editing_main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  height: calc(100% - 4rem);
+  padding: 1rem;
+}

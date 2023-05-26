@@ -1,0 +1,19 @@
+@import "/src/styles/theme.scss";
+
+.app_button_text {
+  height: 2rem;
+
+  font-size: 1rem;
+  font-weight: 700;
+  color: $text-color;
+
+  border: none;
+
+  background: transparent;
+  transition: all 0.2s;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}

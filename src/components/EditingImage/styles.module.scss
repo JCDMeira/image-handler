@@ -1,0 +1,15 @@
+@import "../../styles/theme.scss";
+
+.app_editing_image {
+  position: relative;
+  flex: 2.5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+
+
+  img {
+    border-radius: 0.6rem;
+  }
+}

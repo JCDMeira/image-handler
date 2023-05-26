@@ -1,0 +1,52 @@
+@import "/src/styles/theme.scss";
+
+.app_rotate_slider {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 0.3rem;
+
+  div {
+    &::-webkit-scrollbar {
+      background: none;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: none;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: none;
+    }
+  }
+}
+
+.app_rotate_slider_label {
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.1rem;
+  color: $accent-color;
+}
+
+.app_rotate_slider_pipes {
+  display: flex;
+  height: 1rem;
+  cursor: pointer;
+}
+
+.app_rotate_slider_moving {
+  cursor: w-resize;
+}
+
+.app_rotate_slider_item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1rem;
+  transform: rotate(90deg);
+  scroll-snap-type: x mandatory;
+}
+
+.app_rotate_slider_item_selected {
+  color: $accent-color;
+}

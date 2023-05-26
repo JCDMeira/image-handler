@@ -1,5 +1,5 @@
-import { useEditImageStore } from "../../contexts/imageContext";
-import { editImageActions } from "../../actions/EditImage";
+import { useEditImageStore } from "../../FluxCore/contexts/imageContext";
+import { editImageActions } from "../../FluxCore/actions/EditImage";
 import { AspectrationButtonsBox } from "../AspectRatioButtonsBox";
 import { PrimaryButton } from "../PrimaryButton";
 import { RotateSlider } from "../RotateSlider";

@@ -31,7 +31,11 @@ const EditImageStore = createContext<EditImageStore>({} as EditImageStore);
 export function EditImageprovider(props: React.PropsWithChildren) {
   const [state, dispatch] = useReducer(editImageReducer, initialState);
 
-  return <EditImageStore.Provider value={{ state, dispatch }}>{props.children}</EditImageStore.Provider>;
+  return (
+    <EditImageStore.Provider value={{ state, dispatch }}>
+      {props.children}
+    </EditImageStore.Provider>
+  );
 }
 
 export const useEditImageStore = () => useContext(EditImageStore);

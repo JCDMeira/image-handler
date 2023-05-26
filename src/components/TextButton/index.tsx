@@ -1,8 +1,9 @@
 import styles from "./styles.module.scss";
 
-interface TextButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
-
-export function TextButton({ children, ...restProps }: TextButtonProps) {
+export function TextButton({
+  children,
+  ...restProps
+}: React.ButtonHTMLAttributes<HTMLButtonElement>) {
   return (
     <button className={styles.app_button_text} {...restProps}>
       {children}

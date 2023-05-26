@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { editImageActions } from "../../actions/EditImage";
-import { useEditImageStore } from "../../contexts/imageContext";
+import { editImageActions } from "../../FluxCore/actions/EditImage";
+import { useEditImageStore } from "../../FluxCore/contexts/imageContext";
 import styles from "./styles.module.scss";
 
 export function ImageInput() {
@@ -19,7 +19,12 @@ export function ImageInput() {
   return (
     <label htmlFor="image_input" className={styles.app_image_input}>
       <span>
-        <input id="image_input" type="file" accept="image/*" onChange={handleSelectImage} />
+        <input
+          id="image_input"
+          type="file"
+          accept="image/*"
+          onChange={handleSelectImage}
+        />
       </span>
       {imageName}
     </label>

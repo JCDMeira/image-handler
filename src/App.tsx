@@ -1,7 +1,10 @@
-import { EditImageprovider, useEditImageStore } from "./contexts/imageContext";
-import { Download } from "./screens/Download";
-import { Edit } from "./screens/Edit";
-import { SelectImage } from "./screens/SelectImage";
+import {
+  EditImageprovider,
+  useEditImageStore,
+} from "./FluxCore/contexts/imageContext";
+import { Download } from "./Steps/Download";
+import { Edit } from "./Steps/Edit";
+import { SelectImage } from "./Steps/SelectImage";
 import "./styles/global.scss";
 
 function App() {

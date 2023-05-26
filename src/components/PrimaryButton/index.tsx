@@ -1,8 +1,9 @@
 import styles from "./styles.module.scss";
 
-interface PrimaryButton extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
-
-export function PrimaryButton({ children, ...restProps }: PrimaryButton) {
+export function PrimaryButton({
+  children,
+  ...restProps
+}: React.ButtonHTMLAttributes<HTMLButtonElement>) {
   return (
     <button className={styles.primary_button} {...restProps}>
       {children}

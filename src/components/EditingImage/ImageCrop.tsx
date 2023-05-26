@@ -1,13 +1,22 @@
 import React, { useState, useRef, useEffect } from "react";
-import ReactCrop, { centerCrop, makeAspectCrop, Crop, PixelCrop, PercentCrop } from "react-image-crop";
+import ReactCrop, {
+  centerCrop,
+  makeAspectCrop,
+  Crop,
+  PixelCrop,
+} from "react-image-crop";
 
 import "react-image-crop/dist/ReactCrop.css";
-import { editImageActions } from "../../actions/EditImage";
+import { editImageActions } from "../../FluxCore/actions/EditImage";
 
-import { useEditImageStore } from "../../contexts/imageContext";
+import { useEditImageStore } from "../../FluxCore/contexts/imageContext";
 import { canvasPreview } from "./canvasPreview";
 
-function centerAspectCrop(mediaWidth: number, mediaHeight: number, aspect: number) {
+function centerAspectCrop(
+  mediaWidth: number,
+  mediaHeight: number,
+  aspect: number
+) {
   return centerCrop(
     makeAspectCrop(
       {
@@ -38,17 +47,23 @@ export function ImageCrop() {
   }, [state.imageSrc, state.rotate, state.scale, aspect]);
 
   useEffect(() => {
+    function updateImageOut() {
+      if (!completedCrop || !imgRef.current) return;
+
+      const canvas = document.createElement("canvas");
+      canvasPreview(
+        imgRef.current,
+        canvas,
+        completedCrop,
+        state.scale,
+        state.rotate
+      );
+      const imageOut = canvas.toDataURL();
+      dispatch(editImageActions.setImageOut(imageOut));
+    }
+
     setTimeout(updateImageOut, 200);
-  }, [completedCrop]);
-
-  function updateImageOut() {
-    if (!completedCrop || !imgRef.current) return;
-
-    const canvas = document.createElement("canvas");
-    canvasPreview(imgRef.current, canvas, completedCrop, state.scale, state.rotate);
-    const imageOut = canvas.toDataURL();
-    dispatch(editImageActions.setImageOut(imageOut));
-  }
+  }, [completedCrop, dispatch, state.rotate, state.scale]);
 
   function onImageLoad(e: React.SyntheticEvent<HTMLImageElement>) {
     const { width, height } = e.currentTarget;
@@ -71,7 +86,10 @@ export function ImageCrop() {
         ref={imgRef}
         alt="Crop me"
         src={state.imageSrc}
-        style={{ transform: `scale(${state.scale}) rotate(${state.rotate}deg)`, borderRadius: "0.5rem" }}
+        style={{
+          transform: `scale(${state.scale}) rotate(${state.rotate}deg)`,
+          borderRadius: "0.5rem",
+        }}
         onLoad={onImageLoad}
       />
     </ReactCrop>

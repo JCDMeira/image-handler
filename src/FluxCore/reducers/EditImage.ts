@@ -13,7 +13,10 @@ export interface EditImageState {
   imageOut: string;
 }
 
-const actionsExecutors: Record<EditImageActionsType, (state: EditImageState, payload?: any) => EditImageState> = {
+const actionsExecutors: Record<
+  EditImageActionsType,
+  (state: EditImageState, payload?: any) => EditImageState
+> = {
   setStep: (state: EditImageState, payload: EditingImageStep) => {
     return {
       ...state,
@@ -58,7 +61,10 @@ const actionsExecutors: Record<EditImageActionsType, (state: EditImageState, pay
   },
 };
 
-export function editImageReducer(state: EditImageState, action: EditImageAction) {
+export function editImageReducer(
+  state: EditImageState,
+  action: EditImageAction
+) {
   if (action.type in actionsExecutors) {
     return actionsExecutors[action.type](state, action.payload);
   }

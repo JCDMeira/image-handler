@@ -1,8 +1,8 @@
 import { editImageActions } from "../../FluxCore/actions/EditImage";
 import { ImageInput } from "../../components/ImageInput";
-import { PrimaryButton } from "../../components/PrimaryButton";
 import { useEditImageStore } from "../../FluxCore/contexts/imageContext";
 import styles from "./styles.module.scss";
+import { Button } from "../../components/Button";
 
 export function SelectImage() {
   const { state, dispatch } = useEditImageStore();
@@ -17,14 +17,15 @@ export function SelectImage() {
       </div>
 
       <div className={styles.app_buttons_box}>
-        <PrimaryButton
+        <Button
           disabled={!state.imageName}
           onClick={() => {
             dispatch(editImageActions.setStep("edit"));
           }}
+          variant={"primary_button"}
         >
           Edit
-        </PrimaryButton>
+        </Button>
       </div>
     </main>
   );

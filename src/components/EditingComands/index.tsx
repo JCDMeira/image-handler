@@ -1,9 +1,9 @@
 import { useEditImageStore } from "../../FluxCore/contexts/imageContext";
 import { editImageActions } from "../../FluxCore/actions/EditImage";
 import { AspectrationButtonsBox } from "../AspectRatioButtonsBox";
-import { PrimaryButton } from "../PrimaryButton";
 import { RotateSlider } from "../RotateSlider";
 import styles from "./styles.module.scss";
+import { Button } from "../Button";
 
 export function EditingComands() {
   const { state, dispatch } = useEditImageStore();
@@ -28,7 +28,9 @@ export function EditingComands() {
         selectedAspect={state.selectedAspect}
         selectAspect={handleSelectAspect}
       />
-      <PrimaryButton onClick={handleApply}>Apply</PrimaryButton>
+      <Button onClick={handleApply} variant={"primary_button"}>
+        Apply
+      </Button>
     </div>
   );
 }

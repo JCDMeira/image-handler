@@ -1,9 +1,8 @@
 import { editImageActions } from "../../FluxCore/actions/EditImage";
 import { DownloadScreenHeader } from "../../components/DownloadScreenHeader";
-import { PrimaryLinkButton } from "../../components/PrimaryButton/PrimaryLinkButton";
 import { useEditImageStore } from "../../FluxCore/contexts/imageContext";
 import styles from "./styles.module.scss";
-import { PrimaryButton } from "../../components/PrimaryButton";
+import { Button } from "../../components/Button";
 
 export function Download() {
   const { state, dispatch } = useEditImageStore();
@@ -17,6 +16,15 @@ export function Download() {
     dispatch(editImageActions.setStep("selectImage"));
   }
 
+  const handleDownload = () => {
+    const link = document.createElement("a");
+    link.href = state.imageOut;
+    const name = "imager_" + state.imageName;
+    link.setAttribute("download", name);
+    document.body.appendChild(link);
+    link.click();
+  };
+
   return (
     <>
       <DownloadScreenHeader />
@@ -25,14 +33,13 @@ export function Download() {
           <img src={state.imageOut} />
         </div>
 
-        <PrimaryButton onClick={clearImagesData}>Reset</PrimaryButton>
+        <Button onClick={clearImagesData} variant={"primary_button"}>
+          Reset
+        </Button>
 
-        <PrimaryLinkButton
-          href={state.imageOut}
-          download={"imager_" + state.imageName}
-        >
+        <Button onClick={handleDownload} variant={"primary_button"}>
           Salvar imagem
-        </PrimaryLinkButton>
+        </Button>
       </main>
     </>
   );

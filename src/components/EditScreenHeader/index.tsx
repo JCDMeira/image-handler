@@ -3,21 +3,32 @@ import { editImageActions } from "../../FluxCore/actions/EditImage";
 import { useEditImageStore } from "../../FluxCore/contexts/imageContext";
 
 import { IconButton } from "../IconButton";
-import { TextButton } from "../TextButton";
 import styles from "./styles.module.scss";
+import { Button } from "../Button";
 
 export function EditScreenHeader() {
-  const { dispatch } = useEditImageStore();
+  const { state, dispatch } = useEditImageStore();
 
   function handleReturn() {
     dispatch(editImageActions.setStep("selectImage"));
   }
 
+  function clearImagesData() {
+    URL.revokeObjectURL(state.imageSrc);
+    URL.revokeObjectURL(state.imageOut);
+
+    dispatch(editImageActions.setImageSrc(""));
+    dispatch(editImageActions.setImageOut(""));
+    dispatch(editImageActions.setStep("selectImage"));
+  }
   return (
     <header className={styles.app_header}>
       <div className={styles.app_header_container}>
         <IconButton icon={FaArrowLeft} onClick={handleReturn} />
-        <TextButton>Reset</TextButton>
+
+        <Button onClick={clearImagesData} variant={"app_button_text"}>
+          Reset
+        </Button>
       </div>
     </header>
   );

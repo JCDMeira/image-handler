@@ -28,14 +28,17 @@ const initialState: EditImageState = {
 
 const EditImageStore = createContext<EditImageStore>({} as EditImageStore);
 
-export function EditImageprovider(props: React.PropsWithChildren) {
+function EditImageprovider({ children }: React.PropsWithChildren) {
   const [state, dispatch] = useReducer(editImageReducer, initialState);
 
   return (
     <EditImageStore.Provider value={{ state, dispatch }}>
-      {props.children}
+      {children}
     </EditImageStore.Provider>
   );
 }
 
-export const useEditImageStore = () => useContext(EditImageStore);
+const useEditImageStore = () => useContext(EditImageStore);
+
+// eslint-disable-next-line react-refresh/only-export-components
+export { EditImageprovider, useEditImageStore };

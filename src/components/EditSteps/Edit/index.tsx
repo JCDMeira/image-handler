@@ -1,10 +1,13 @@
 import { EditingComands } from "../../EditingComands";
-import { EditingImage } from "../../EditingImage";
+import { ImageCrop } from "../../ImageCrop";
+import styles from "./styles.module.scss";
 
 export function Edit() {
   return (
     <>
-      <EditingImage />
+      <div className={styles.app_editing_image}>
+        <ImageCrop />
+      </div>
       <EditingComands />
     </>
   );

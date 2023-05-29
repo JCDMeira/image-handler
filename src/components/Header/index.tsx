@@ -13,7 +13,6 @@ export function Header() {
 
   function handleReturn() {
     const stepToGoBack = isEditStep ? "selectImage" : "edit";
-
     dispatch(editImageActions.setStep(stepToGoBack));
   }
 
@@ -23,18 +22,22 @@ export function Header() {
 
   return (
     <header className={styles.app_header}>
-      <div className={styles.app_header_container}>
+      <div>
         {!isFirstStep && (
           <Button onClick={handleReturn} variant={"app_button_text"}>
             <FaArrowLeft />
           </Button>
         )}
-        {!!state.imageSrc && (
-          <Button onClick={clearImagesData} variant={"app_button_text"}>
-            Reset
-          </Button>
-        )}
       </div>
+      {!!state.imageSrc && (
+        <Button
+          onClick={clearImagesData}
+          variant={"app_button_text"}
+          id="teste"
+        >
+          Reset
+        </Button>
+      )}
     </header>
   );
 }

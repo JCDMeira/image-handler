@@ -5,11 +5,16 @@ import { useEditImageStore } from "../../FluxCore/contexts/imageContext";
 import styles from "./styles.module.scss";
 import { Button } from "../Button";
 
-export function EditScreenHeader() {
+export function Header() {
   const { state, dispatch } = useEditImageStore();
 
+  const isFirstStep = state.step === "selectImage";
+  const isEditStep = state.step === "edit";
+
   function handleReturn() {
-    dispatch(editImageActions.setStep("selectImage"));
+    const stepToGoBack = isEditStep ? "selectImage" : "edit";
+
+    dispatch(editImageActions.setStep(stepToGoBack));
   }
 
   function clearImagesData() {
@@ -23,13 +28,17 @@ export function EditScreenHeader() {
   return (
     <header className={styles.app_header}>
       <div className={styles.app_header_container}>
-        <Button onClick={handleReturn} variant={"app_button_text"}>
-          <FaArrowLeft />
-        </Button>
+        {!isFirstStep && (
+          <>
+            <Button onClick={handleReturn} variant={"app_button_text"}>
+              <FaArrowLeft />
+            </Button>
 
-        <Button onClick={clearImagesData} variant={"app_button_text"}>
-          Reset
-        </Button>
+            <Button onClick={clearImagesData} variant={"app_button_text"}>
+              Reset
+            </Button>
+          </>
+        )}
       </div>
     </header>
   );

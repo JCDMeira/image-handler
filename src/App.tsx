@@ -5,11 +5,13 @@ import {
 import { Download } from "./Steps/Download";
 import { Edit } from "./Steps/Edit";
 import { SelectImage } from "./Steps/SelectImage";
+import { Header } from "./components/Header";
 import "./styles/global.scss";
 
 function App() {
   return (
     <EditImageprovider>
+      <Header />
       <GetStepScreen />
     </EditImageprovider>
   );

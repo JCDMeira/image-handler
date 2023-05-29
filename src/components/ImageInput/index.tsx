@@ -5,7 +5,7 @@ import styles from "./styles.module.scss";
 
 export function ImageInput() {
   const [imageName, setImageName] = useState("Selecione uma imagem");
-  const { state, dispatch } = useEditImageStore();
+  const { dispatch } = useEditImageStore();
 
   function handleSelectImage(event: React.ChangeEvent<HTMLInputElement>) {
     if (!event.target.files) return;

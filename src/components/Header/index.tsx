@@ -1,9 +1,9 @@
 import { FaArrowLeft } from "react-icons/fa";
 import { editImageActions } from "../../FluxCore/actions/EditImage";
 import { useEditImageStore } from "../../FluxCore/contexts/imageContext";
+import { Button } from "../Button";
 
 import styles from "./styles.module.scss";
-import { Button } from "../Button";
 
 export function Header() {
   const { state, dispatch } = useEditImageStore();
@@ -18,12 +18,7 @@ export function Header() {
   }
 
   function clearImagesData() {
-    URL.revokeObjectURL(state.imageSrc);
-    URL.revokeObjectURL(state.imageOut);
-
-    dispatch(editImageActions.setImageSrc(""));
-    dispatch(editImageActions.setImageOut(""));
-    dispatch(editImageActions.setStep("selectImage"));
+    dispatch(editImageActions.onReset());
   }
   return (
     <header className={styles.app_header}>

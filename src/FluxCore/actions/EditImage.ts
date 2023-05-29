@@ -5,10 +5,12 @@ export type EditImageActionsType =
   | "setAspect"
   | "setImageName"
   | "setImageSrc"
-  | "setImageOut";
+  | "setImageOut"
+  | "onReset";
 
 export interface EditImageAction {
   type: EditImageActionsType;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   payload?: any;
 }
 
@@ -29,4 +31,5 @@ export const editImageActions = {
     ({ type: "setImageSrc", payload: imageSrc } as EditImageAction),
   setImageOut: (imageOut: string) =>
     ({ type: "setImageOut", payload: imageOut } as EditImageAction),
+  onReset: () => ({ type: "onReset" } as EditImageAction),
 };

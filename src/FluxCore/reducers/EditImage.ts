@@ -1,4 +1,5 @@
 import { EditImageAction, EditImageActionsType } from "../actions/EditImage";
+import { initialState } from "../contexts/imageContext";
 
 type EditingImageStep = "selectImage" | "edit" | "download";
 
@@ -15,6 +16,7 @@ export interface EditImageState {
 
 const actionsExecutors: Record<
   EditImageActionsType,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   (state: EditImageState, payload?: any) => EditImageState
 > = {
   setStep: (state: EditImageState, payload: EditingImageStep) => {
@@ -57,6 +59,12 @@ const actionsExecutors: Record<
     return {
       ...state,
       imageOut: payload,
+    };
+  },
+  onReset: (state: EditImageState) => {
+    return {
+      ...state,
+      ...initialState,
     };
   },
 };

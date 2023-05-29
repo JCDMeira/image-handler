@@ -6,7 +6,8 @@ interface EditImageStore {
   state: EditImageState;
   dispatch: React.Dispatch<EditImageAction>;
 }
-const initialState: EditImageState = {
+// eslint-disable-next-line react-refresh/only-export-components
+export const initialState: EditImageState = {
   step: "selectImage",
   imageName: "",
   imageSrc: "",

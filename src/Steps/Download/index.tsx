@@ -16,15 +16,13 @@ export function Download() {
 
   return (
     <>
-      <main className={styles.download_main}>
-        <div className={styles.app_image_out}>
-          <img src={state.imageOut} />
-        </div>
+      <div className={styles.app_image_out}>
+        <img src={state.imageOut} />
+      </div>
 
-        <Button onClick={handleDownload} variant={"primary_button"}>
-          Salvar imagem
-        </Button>
-      </main>
+      <Button onClick={handleDownload} variant={"primary_button"}>
+        Salvar imagem
+      </Button>
     </>
   );
 }

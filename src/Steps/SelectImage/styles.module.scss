@@ -1,29 +1,5 @@
 @import "/src/styles/theme.scss";
 
-.app_main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  row-gap: 2rem;
-
-  height: 100%;
-  width: 100vw;
-
-  margin-left: auto;
-  margin-right: auto;
-  padding: 1rem;
-
-  @media (min-width: 800px) {
-    max-width: 1100px;
-  }
-
-  @media (min-height: 900px) {
-    padding-top: 5rem;
-    padding-bottom: 3rem;
-  }
-}
-
 .app_select_image {
   flex: 1;
   display: flex;
@@ -33,7 +9,6 @@
   @media (min-width: 600px) and (max-width: 800px) {
     height: 60%;
   }
-
 }
 
 .app_original_image_view {
@@ -51,6 +26,7 @@
     width: 100%;
     max-width: fit-content;
     height: 100%;
+    max-height: 50vh;
     max-height: 600px;
     object-fit: contain;
     border-radius: 0.8rem;
@@ -64,8 +40,6 @@
 
   width: 100%;
 
-
-
   button {
     flex: 1;
 
@@ -74,6 +48,4 @@
       margin-top: 3rem;
     }
   }
-
-  ;
 }

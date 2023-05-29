@@ -1,11 +1,16 @@
 @import "/src/styles/theme.scss";
 
-.editing_main {
+.app_main {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  row-gap: 2rem;
 
-  height: calc(100% - 4rem);
+  height: 100%;
+  max-height: 80vh;
+  width: 100vw;
+
+  margin: 0 auto;
   padding: 1rem;
 }

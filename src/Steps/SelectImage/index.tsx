@@ -7,7 +7,7 @@ import { Button } from "../../components/Button";
 export function SelectImage() {
   const { state, dispatch } = useEditImageStore();
   return (
-    <main className={styles.app_main}>
+    <>
       <div className={styles.app_select_image}>
         <ImageInput />
 
@@ -27,6 +27,6 @@ export function SelectImage() {
           Edit
         </Button>
       </div>
-    </main>
+    </>
   );
 }

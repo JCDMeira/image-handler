@@ -1,16 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import { editImageActions } from "../../FluxCore/actions/EditImage";
 import { useEditImageStore } from "../../FluxCore/contexts/imageContext";
 import styles from "./styles.module.scss";
 
 export function ImageInput() {
-  const [imageName, setImageName] = useState("Selecione uma imagem");
-  const { dispatch } = useEditImageStore();
+  const { state, dispatch } = useEditImageStore();
 
   function handleSelectImage(event: React.ChangeEvent<HTMLInputElement>) {
     if (!event.target.files) return;
     const imageFile = event.target.files[0];
-    setImageName(imageFile.name);
     const imageUrl = URL.createObjectURL(imageFile);
     dispatch(editImageActions.setImageName(imageFile.name));
     dispatch(editImageActions.setImageSrc(imageUrl));
@@ -26,7 +24,7 @@ export function ImageInput() {
           onChange={handleSelectImage}
         />
       </span>
-      {imageName}
+      {state.imageName}
     </label>
   );
 }

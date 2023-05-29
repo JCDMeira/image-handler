@@ -28,8 +28,6 @@ export function RotateSlider({ rotateValue, onChange }: RotateSliderProps) {
   function handleWeel(event: React.WheelEvent) {
     const position = event.deltaY;
 
-    console.log(position);
-
     const currentValue = position < 0 ? rotateValue + 1 : rotateValue - 1;
     changeRotate(currentValue);
   }
@@ -50,7 +48,6 @@ export function RotateSlider({ rotateValue, onChange }: RotateSliderProps) {
     if (deltaX < 18 && !(deltaX < -18)) return;
 
     const currentValue = rotateValue + Math.trunc(deltaX / 18);
-    console.log(deltaX, startPosition, position);
     changeRotate(currentValue);
   }
 
@@ -58,7 +55,9 @@ export function RotateSlider({ rotateValue, onChange }: RotateSliderProps) {
     <div className={styles.app_rotate_slider}>
       <span className={styles.app_rotate_slider_label}>{rotateValue}°</span>
       <span
-        className={`${styles.app_rotate_slider_pipes} ${isMoving ? styles.app_rotate_slider_moving : ""}`}
+        className={`${styles.app_rotate_slider_pipes} ${
+          isMoving ? styles.app_rotate_slider_moving : ""
+        }`}
         onWheel={handleWeel}
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseUp}
@@ -66,7 +65,11 @@ export function RotateSlider({ rotateValue, onChange }: RotateSliderProps) {
         onMouseLeave={() => setIsMoving(false)}
       >
         {itemsList.map((item) => (
-          <span key={item} style={{}} className={`${styles.app_rotate_slider_item} `}>
+          <span
+            key={item}
+            style={{}}
+            className={`${styles.app_rotate_slider_item} `}
+          >
             <FaMinus size={0 === rotateValue ? 22 : 18}></FaMinus>
           </span>
         ))}

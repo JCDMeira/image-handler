@@ -20,19 +20,19 @@ export function Header() {
   function clearImagesData() {
     dispatch(editImageActions.onReset());
   }
+
   return (
     <header className={styles.app_header}>
       <div className={styles.app_header_container}>
         {!isFirstStep && (
-          <>
-            <Button onClick={handleReturn} variant={"app_button_text"}>
-              <FaArrowLeft />
-            </Button>
-
-            <Button onClick={clearImagesData} variant={"app_button_text"}>
-              Reset
-            </Button>
-          </>
+          <Button onClick={handleReturn} variant={"app_button_text"}>
+            <FaArrowLeft />
+          </Button>
+        )}
+        {!!state.imageSrc && (
+          <Button onClick={clearImagesData} variant={"app_button_text"}>
+            Reset
+          </Button>
         )}
       </div>
     </header>

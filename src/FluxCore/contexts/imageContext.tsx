@@ -9,7 +9,7 @@ interface EditImageStore {
 // eslint-disable-next-line react-refresh/only-export-components
 export const initialState: EditImageState = {
   step: "selectImage",
-  imageName: "",
+  imageName: "Selecione uma imagem",
   imageSrc: "",
   rotate: 0,
   scale: 1,

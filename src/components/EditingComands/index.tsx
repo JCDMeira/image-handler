@@ -12,10 +12,6 @@ export function EditingComands() {
     dispatch(editImageActions.setRotate(value));
   }
 
-  function handleSelectAspect(aspectKey: string) {
-    dispatch(editImageActions.setAspect(aspectKey));
-  }
-
   function handleApply() {
     dispatch(editImageActions.setStep("download"));
   }
@@ -26,7 +22,6 @@ export function EditingComands() {
       <AspectrationButtonsBox
         aspects={state.aspects}
         selectedAspect={state.selectedAspect}
-        selectAspect={handleSelectAspect}
       />
       <Button onClick={handleApply} variant={"primary_button"}>
         Apply

@@ -12,8 +12,10 @@ export interface EditImageAction {
   payload?: any;
 }
 
+export type StepsKeys = "selectImage" | "edit" | "download";
+
 export const editImageActions = {
-  setStep: (step: "selectImage" | "edit" | "download") =>
+  setStep: (step: StepsKeys) =>
     ({ type: "setStep", payload: step } as EditImageAction),
   setRotate: (rotate: number) =>
     ({ type: "setRotate", payload: rotate } as EditImageAction),

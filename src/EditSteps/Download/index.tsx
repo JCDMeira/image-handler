@@ -1,6 +1,6 @@
 import { useEditImageStore } from "../../FluxCore/contexts/imageContext";
-import styles from "./styles.module.scss";
 import { Button } from "../../components/Button";
+import styles from "./styles.module.scss";
 
 export function Download() {
   const { state } = useEditImageStore();

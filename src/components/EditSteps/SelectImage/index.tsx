@@ -1,8 +1,8 @@
-import { editImageActions } from "../../FluxCore/actions/EditImage";
-import { ImageInput } from "../../components/ImageInput";
-import { useEditImageStore } from "../../FluxCore/contexts/imageContext";
+import { editImageActions } from "../../../FluxCore/actions/EditImage";
+import { useEditImageStore } from "../../../FluxCore/contexts/imageContext";
+import { Button } from "../../Button";
+import { ImageInput } from "../../ImageInput";
 import styles from "./styles.module.scss";
-import { Button } from "../../components/Button";
 
 export function SelectImage() {
   const { state, dispatch } = useEditImageStore();

@@ -1,5 +1,5 @@
-import { EditingImage } from "../../components/EditingImage";
 import { EditingComands } from "../../components/EditingComands";
+import { EditingImage } from "../../components/EditingImage";
 
 export function Edit() {
   return (

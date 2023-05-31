@@ -1,30 +1,27 @@
-import React from "react";
 import { editImageActions } from "../../FluxCore/actions/EditImage";
 import { useEditImageStore } from "../../FluxCore/contexts/imageContext";
 import styles from "./styles.module.scss";
+import { useDropzone } from "react-dropzone";
 
 export function ImageInput() {
   const { state, dispatch } = useEditImageStore();
 
-  function handleSelectImage(event: React.ChangeEvent<HTMLInputElement>) {
-    if (!event.target.files) return;
-    const imageFile = event.target.files[0];
-    const imageUrl = URL.createObjectURL(imageFile);
-    dispatch(editImageActions.setImageName(imageFile.name));
-    dispatch(editImageActions.setImageSrc(imageUrl));
-  }
+  const { getRootProps, getInputProps } = useDropzone({
+    accept: { "image/*": [] },
+    onDrop: (acceptedFiles) => {
+      const imageFile = acceptedFiles[0];
+      const imageUrl = URL.createObjectURL(imageFile);
+      dispatch(editImageActions.setImageName(imageFile.name));
+      dispatch(editImageActions.setImageSrc(imageUrl));
+    },
+  });
 
   return (
-    <label htmlFor="image_input" className={styles.app_image_input}>
-      <span>
-        <input
-          id="image_input"
-          type="file"
-          accept="image/*"
-          onChange={handleSelectImage}
-        />
-      </span>
-      {state.imageName}
-    </label>
+    <div className={styles.container_image_input}>
+      <div className={styles.image_input} {...getRootProps()}>
+        <input id="image_input" {...getInputProps()} />
+      </div>
+      <label htmlFor="image_input">{state.imageName}</label>
+    </div>
   );
 }

@@ -1,6 +1,6 @@
 @import "../../styles/theme.scss";
 
-.app_image_input {
+.container_image_input {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -18,18 +18,14 @@
   &:hover {
     opacity: 0.8;
   }
+}
 
-  span {
-    display: flex;
+.image_input {
+  display: flex;
 
-    width: 6rem;
-    height: 6rem;
+  width: 6rem;
+  height: 6rem;
 
-    border: 2px dashed $border-color;
-    border-radius: 0.5rem;
-
-    input {
-      display: none;
-    }
-  }
+  border: 2px dashed $accent-color;
+  border-radius: 0.5rem;
 }

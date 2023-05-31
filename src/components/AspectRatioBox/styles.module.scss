@@ -1,5 +1,30 @@
 @import "/src/styles/theme.scss";
 
+.app_aspect_ratio_buttons_box {
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  column-gap: 1rem;
+
+  width: 100%;
+  max-width: 500px;
+  overflow-y: auto;
+
+  padding-left: 0.5rem;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  &::-webkit-scrollbar-track {
+    display: none;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    display: none;
+  }
+}
+
 .app_aspect_ratio_buttom {
   display: flex;
   flex-direction: column;
@@ -36,7 +61,6 @@
   label {
     word-wrap: no-wrap;
   }
-
 }
 
 .app_aspect_ratio_buttom_selected {

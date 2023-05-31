@@ -1,6 +1,5 @@
 import { editImageActions } from "../../FluxCore/actions/EditImage";
 import { useEditImageStore } from "../../FluxCore/contexts/imageContext";
-import { AspectRatioButton } from "../AspectRatioButton";
 import styles from "./styles.module.scss";
 
 interface AspectrationButtonsBoxprops {
@@ -8,7 +7,7 @@ interface AspectrationButtonsBoxprops {
   selectedAspect: string;
 }
 
-export function AspectrationButtonsBox({
+export function AspectRatioBox({
   aspects,
   selectedAspect,
 }: AspectrationButtonsBoxprops) {
@@ -22,13 +21,19 @@ export function AspectrationButtonsBox({
   return (
     <div className={styles.app_aspect_ratio_buttons_box}>
       {aspectsList.map((aspectKey) => (
-        <AspectRatioButton
+        <button
           key={aspectKey}
-          selected={selectedAspect === aspectKey}
-          label={aspectKey}
-          aspect={aspects[aspectKey] || 1}
           onClick={() => handleSelectAspect(aspectKey)}
-        />
+          className={`${styles.app_aspect_ratio_buttom} ${
+            selectedAspect === aspectKey &&
+            styles.app_aspect_ratio_buttom_selected
+          }`}
+        >
+          <span
+            style={{ height: `calc(2.5rem / ${aspects[aspectKey] || 1})` }}
+          />
+          <label>{aspectKey}</label>
+        </button>
       ))}
     </div>
   );

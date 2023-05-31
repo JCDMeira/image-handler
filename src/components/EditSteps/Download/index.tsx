@@ -1,5 +1,5 @@
 import { useEditImageStore } from "../../../FluxCore/contexts/imageContext";
-import { Button } from "../../Button";
+import { Button } from "../../";
 import styles from "./styles.module.scss";
 
 export function Download() {

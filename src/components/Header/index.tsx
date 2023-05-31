@@ -1,7 +1,7 @@
 import { FaArrowLeft } from "react-icons/fa";
 import { editImageActions } from "../../FluxCore/actions/EditImage";
 import { useEditImageStore } from "../../FluxCore/contexts/imageContext";
-import { Button } from "../Button";
+import { Button } from "../";
 
 import styles from "./styles.module.scss";
 

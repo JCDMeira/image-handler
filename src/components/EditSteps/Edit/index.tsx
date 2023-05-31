@@ -1,9 +1,6 @@
 import { editImageActions } from "../../../FluxCore/actions/EditImage";
 import { useEditImageStore } from "../../../FluxCore/contexts/imageContext";
-import { AspectRatioBox } from "../../AspectRatioBox";
-import { Button } from "../../Button";
-import { ImageCrop } from "../../ImageCrop";
-import { RotateSlider } from "../../RotateSlider";
+import { AspectRatioBox, Button, ImageCrop, RotateSlider } from "../../";
 import styles from "./styles.module.scss";
 
 export function Edit() {

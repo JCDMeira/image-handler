@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { FaMinus } from "react-icons/fa";
-
-import styles from "./styles.module.scss";
 import { useEditImageStore } from "../../FluxCore/contexts/imageContext";
 import { editImageActions } from "../../FluxCore/actions/EditImage";
+import styles from "./styles.module.scss";
 
 const itemsList = new Array(20).fill(null).map((_, index) => index);
 

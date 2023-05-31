@@ -1,7 +1,7 @@
 import { editImageActions } from "../../FluxCore/actions/EditImage";
+import { useDropzone } from "react-dropzone";
 import { useEditImageStore } from "../../FluxCore/contexts/imageContext";
 import styles from "./styles.module.scss";
-import { useDropzone } from "react-dropzone";
 
 //@ adicionar drag full
 export function InputImage() {

@@ -1,7 +1,7 @@
 import { editImageActions } from "../../../FluxCore/actions/EditImage";
 import { useEditImageStore } from "../../../FluxCore/contexts/imageContext";
 import { Button } from "../../Button";
-import { ImageInput } from "../../ImageInput";
+import { InputImage } from "../../InputImage";
 import styles from "./styles.module.scss";
 
 export function SelectImage() {
@@ -9,7 +9,7 @@ export function SelectImage() {
   return (
     <>
       <div className={styles.app_select_image}>
-        <ImageInput />
+        <InputImage />
 
         <div className={styles.app_original_image_view}>
           {state.imageSrc && <img src={state.imageSrc} />}

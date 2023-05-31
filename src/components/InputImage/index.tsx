@@ -4,7 +4,7 @@ import styles from "./styles.module.scss";
 import { useDropzone } from "react-dropzone";
 
 //@ adicionar drag full
-export function ImageInput() {
+export function InputImage() {
   const { state, dispatch } = useEditImageStore();
 
   const { getRootProps, getInputProps } = useDropzone({

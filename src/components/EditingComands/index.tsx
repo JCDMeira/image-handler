@@ -6,11 +6,7 @@ import styles from "./styles.module.scss";
 import { Button } from "../Button";
 
 export function EditingComands() {
-  const { state, dispatch } = useEditImageStore();
-
-  function handleSliderWeel(value: number) {
-    dispatch(editImageActions.setRotate(value));
-  }
+  const { dispatch } = useEditImageStore();
 
   function handleApply() {
     dispatch(editImageActions.setStep("download"));
@@ -18,7 +14,7 @@ export function EditingComands() {
 
   return (
     <div className={styles.comands_container}>
-      <RotateSlider rotateValue={state.rotate} onChange={handleSliderWeel} />
+      <RotateSlider />
       <AspectRatioBox />
       <Button onClick={handleApply} variant={"primary_button"}>
         Apply

@@ -2,33 +2,34 @@ import React, { useState } from "react";
 import { FaMinus } from "react-icons/fa";
 
 import styles from "./styles.module.scss";
-
-interface RotateSliderProps {
-  rotateValue: number;
-  onChange: (value: number) => void;
-}
+import { useEditImageStore } from "../../FluxCore/contexts/imageContext";
+import { editImageActions } from "../../FluxCore/actions/EditImage";
 
 const itemsList = new Array(20).fill(null).map((_, index) => index);
 
-export function RotateSlider({ rotateValue, onChange }: RotateSliderProps) {
+export function RotateSlider() {
+  const { state, dispatch } = useEditImageStore();
+
   const [startPosition, setStartPosition] = useState(0);
   const [isMoving, setIsMoving] = useState(false);
+
+  function handleSliderWeel(value: number) {
+    dispatch(editImageActions.setRotate(value));
+  }
 
   function changeRotate(value: number) {
     if (value < -180) {
       value = -180;
-    }
-
-    if (value > 180) {
+    } else if (value > 180) {
       value = 180;
     }
-    onChange(value);
+    handleSliderWeel(value);
   }
 
   function handleWeel(event: React.WheelEvent) {
     const position = event.deltaY;
 
-    const currentValue = position < 0 ? rotateValue + 1 : rotateValue - 1;
+    const currentValue = position < 0 ? state.rotate + 1 : state.rotate - 1;
     changeRotate(currentValue);
   }
 
@@ -47,16 +48,16 @@ export function RotateSlider({ rotateValue, onChange }: RotateSliderProps) {
 
     if (deltaX < 18 && !(deltaX < -18)) return;
 
-    const currentValue = rotateValue + Math.trunc(deltaX / 18);
+    const currentValue = state.rotate + Math.trunc(deltaX / 18);
     changeRotate(currentValue);
   }
 
   return (
     <div className={styles.app_rotate_slider}>
-      <span className={styles.app_rotate_slider_label}>{rotateValue}°</span>
+      <span className={styles.app_rotate_slider_label}>{state.rotate}°</span>
       <span
         className={`${styles.app_rotate_slider_pipes} ${
-          isMoving ? styles.app_rotate_slider_moving : ""
+          isMoving && styles.app_rotate_slider_moving
         }`}
         onWheel={handleWeel}
         onMouseDown={handleMouseDown}
@@ -65,12 +66,8 @@ export function RotateSlider({ rotateValue, onChange }: RotateSliderProps) {
         onMouseLeave={() => setIsMoving(false)}
       >
         {itemsList.map((item) => (
-          <span
-            key={item}
-            style={{}}
-            className={`${styles.app_rotate_slider_item} `}
-          >
-            <FaMinus size={0 === rotateValue ? 22 : 18}></FaMinus>
+          <span key={item} className={`${styles.app_rotate_slider_item} `}>
+            <FaMinus size={0 === state.rotate ? 22 : 18} />
           </span>
         ))}
       </span>

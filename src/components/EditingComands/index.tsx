@@ -19,10 +19,7 @@ export function EditingComands() {
   return (
     <div className={styles.comands_container}>
       <RotateSlider rotateValue={state.rotate} onChange={handleSliderWeel} />
-      <AspectRatioBox
-        aspects={state.aspects}
-        selectedAspect={state.selectedAspect}
-      />
+      <AspectRatioBox />
       <Button onClick={handleApply} variant={"primary_button"}>
         Apply
       </Button>

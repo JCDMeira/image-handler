@@ -4,12 +4,12 @@ import { useEditImageStore } from "../../FluxCore/contexts/imageContext";
 import styles from "./styles.module.scss";
 import { useEffect, useState } from "react";
 
-//@ adicionar drag full
 export function InputImage() {
   const { state, dispatch } = useEditImageStore();
 
   const { getRootProps, getInputProps } = useDropzone({
     accept: { "image/*": [] },
+    onDragLeave: () => setIsVisible(false),
     onDrop: (acceptedFiles) => {
       const imageFile = acceptedFiles[0];
       const imageUrl = URL.createObjectURL(imageFile);
@@ -22,30 +22,17 @@ export function InputImage() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    document.addEventListener("dragover", () => {
-      setIsVisible(true);
-    });
+    document.addEventListener("dragover", () => setIsVisible(true));
 
-    document.addEventListener("dragleave", () => {
-      setIsVisible(false);
-    });
-
-    // return () => {
-    //   document.removeEventListener("dragover", () => {
-    //     setIsVisible(true);
-    //   });
-    //   document.removeEventListener("dragleave", () => {
-    //     setIsVisible(false);
-    //   });
-    // };
+    return () => {
+      document.removeEventListener("dragover", () => setIsVisible(true));
+    };
   }, []);
-
-  console.log(isVisible);
 
   return (
     <div className={styles.container_image_input}>
       {isVisible && (
-        <div className={styles.dragfull} {...getRootProps()}>
+        <div className={styles.dragfull} id="draggable" {...getRootProps()}>
           <h1>Solte seu arquivo em qualquer lugar</h1>
         </div>
       )}

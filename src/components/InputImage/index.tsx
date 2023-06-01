@@ -30,15 +30,17 @@ export function InputImage() {
       setIsVisible(false);
     });
 
-    return () => {
-      document.removeEventListener("dragover", () => {
-        setIsVisible(true);
-      });
-      document.removeEventListener("dragleave", () => {
-        setIsVisible(false);
-      });
-    };
+    // return () => {
+    //   document.removeEventListener("dragover", () => {
+    //     setIsVisible(true);
+    //   });
+    //   document.removeEventListener("dragleave", () => {
+    //     setIsVisible(false);
+    //   });
+    // };
   }, []);
+
+  console.log(isVisible);
 
   return (
     <div className={styles.container_image_input}>

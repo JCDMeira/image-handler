@@ -17,7 +17,8 @@
     "react-dropzone": "^14.2.3",
     "react-icons": "^4.4.0",
     "react-image-crop": "^10.0.7",
-    "react-window": "^1.8.7"
+    "react-window": "^1.8.7",
+    "zustand": "^4.3.8"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",

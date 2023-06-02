@@ -29,6 +29,8 @@ Este é um projeto visa a refatoração e aprimoramento de uma arquitetura Flux 
 O projeto foi construído com React Hooks useReducer e useContext.
 O objetivo principal é corrigir quebras de conceitos do Flux, resolver erros de componentização, melhorar a experiência do usuário e trazer pontos de melhoria de performance em relação a um projeto Flux existente.
 
+Obs: O projeto original não é de minha autoria, ele foi usado para fins de testes de conceitos, refatorações e adição de features. O mesmo pode ser visto clicando [aqui](https://github.com/JirlanSouza/imager)
+
 ## :trophy: O desafio <a name="id01.1"></a>
 
 <br />

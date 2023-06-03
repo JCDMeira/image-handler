@@ -14,7 +14,7 @@ const getStep = (step: EditingImageStep) => {
 };
 
 export const EditSteps: React.FC = () => {
-  const step = useImageStore((state) => state.step);
+  const { step } = useImageStore((store) => store.state);
 
   return getStep(step);
 };

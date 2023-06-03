@@ -1,16 +1,15 @@
 import { Button } from "../";
-import { useImageStore } from "../../Store/useImageStore";
+import { editImageActions, useImageStore } from "../../Store/useImageStore";
 import styles from "./styles.module.scss";
 
 export function AspectRatioBox() {
-  const aspects = useImageStore((state) => state.aspects);
-  const setAspect = useImageStore((state) => state.setAspect);
-  const selectedAspect = useImageStore((state) => state.selectedAspect);
+  const state = useImageStore((store) => store.state);
+  const dispatch = useImageStore((store) => store.dispatch);
 
-  const aspectsList = Object.keys(aspects);
+  const aspectsList = Object.keys(state.aspects);
 
   function handleSelectAspect(aspectKey: string) {
-    setAspect(aspectKey);
+    dispatch(editImageActions.setAspect(aspectKey));
   }
 
   return (
@@ -23,10 +22,10 @@ export function AspectRatioBox() {
         >
           <span
             className={`${styles.aspect_span} ${
-              selectedAspect === aspectKey && styles.aspect_span_selected
+              state.selectedAspect === aspectKey && styles.aspect_span_selected
             }`}
             style={{
-              height: `calc(2.5rem / ${aspects[aspectKey] || 1})`,
+              height: `calc(2.5rem / ${state.aspects[aspectKey] || 1})`,
             }}
           />
           <label className={`${styles.aspect_label}`}>{aspectKey}</label>

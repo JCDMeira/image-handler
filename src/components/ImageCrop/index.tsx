@@ -8,7 +8,7 @@ import ReactCrop, {
 
 import "react-image-crop/dist/ReactCrop.css";
 import { canvasPreview } from "./canvasPreview";
-import { useImageStore } from "../../Store/useImageStore";
+import { editImageActions, useImageStore } from "../../Store/useImageStore";
 
 function centerAspectCrop(
   mediaWidth: number,
@@ -35,33 +35,35 @@ export function ImageCrop() {
   const [crop, setCrop] = useState<Crop>();
   const [completedCrop, setCompletedCrop] = useState<PixelCrop>();
 
-  const setImageOut = useImageStore((state) => state.setImageOut);
-  const aspects = useImageStore((state) => state.aspects);
-  const selectedAspect = useImageStore((state) => state.selectedAspect);
-  const imageSrc = useImageStore((state) => state.imageSrc);
-  const rotate = useImageStore((state) => state.rotate);
-  const scale = useImageStore((state) => state.scale);
+  const state = useImageStore((store) => store.state);
+  const dispatch = useImageStore((store) => store.dispatch);
 
-  const aspect = aspects[selectedAspect];
+  const aspect = state.aspects[state.selectedAspect];
 
   useEffect(() => {
     if (!imgRef.current || !aspect) return;
     const { width, height } = imgRef.current;
     setCrop(centerAspectCrop(width, height, aspect));
-  }, [imageSrc, rotate, scale, aspect]);
+  }, [aspect]);
 
   useEffect(() => {
     function updateImageOut() {
       if (!completedCrop || !imgRef.current) return;
 
       const canvas = document.createElement("canvas");
-      canvasPreview(imgRef.current, canvas, completedCrop, scale, rotate);
+      canvasPreview(
+        imgRef.current,
+        canvas,
+        completedCrop,
+        state.scale,
+        state.rotate
+      );
       const imageOut = canvas.toDataURL();
-      setImageOut(imageOut);
+      dispatch(editImageActions.setImageOut(imageOut));
     }
 
     setTimeout(updateImageOut, 200);
-  }, [completedCrop, rotate, scale, setImageOut]);
+  }, [completedCrop, dispatch, state.rotate, state.scale]);
 
   function onImageLoad(e: React.SyntheticEvent<HTMLImageElement>) {
     const { width, height } = e.currentTarget;
@@ -78,14 +80,14 @@ export function ImageCrop() {
       crop={crop}
       onChange={(_, percentCrop) => setCrop(percentCrop)}
       onComplete={(c) => setCompletedCrop(c)}
-      aspect={aspects[selectedAspect] || undefined}
+      aspect={state.aspects[state.selectedAspect] || undefined}
     >
       <img
         ref={imgRef}
         alt="Crop me"
-        src={imageSrc}
+        src={state.imageSrc}
         style={{
-          transform: `scale(${scale}) rotate(${rotate}deg)`,
+          transform: `scale(${state.scale}) rotate(${state.rotate}deg)`,
           borderRadius: "0.5rem",
         }}
         onLoad={onImageLoad}

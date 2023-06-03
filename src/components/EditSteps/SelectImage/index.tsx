@@ -1,11 +1,11 @@
 import { Button } from "../../";
-import { useImageStore } from "../../../Store/useImageStore";
+import { editImageActions, useImageStore } from "../../../Store/useImageStore";
 import { InputImage } from "../../InputImage";
 import styles from "./styles.module.scss";
 
 export function SelectImage() {
-  const imageSrc = useImageStore((state) => state.imageSrc);
-  const setStep = useImageStore((state) => state.setStep);
+  const state = useImageStore((store) => store.state);
+  const dispatch = useImageStore((store) => store.dispatch);
 
   return (
     <>
@@ -13,14 +13,14 @@ export function SelectImage() {
         <InputImage />
 
         <div className={styles.app_original_image_view}>
-          {imageSrc && <img src={imageSrc} />}
+          {state.imageSrc && <img src={state.imageSrc} />}
         </div>
       </div>
 
       <div className={styles.app_buttons_box}>
         <Button
-          disabled={!imageSrc}
-          onClick={() => setStep("edit")}
+          disabled={!state.imageSrc}
+          onClick={() => dispatch(editImageActions.setStep("edit"))}
           variant={"primary_button"}
         >
           Edit

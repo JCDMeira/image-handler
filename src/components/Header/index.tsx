@@ -2,24 +2,22 @@ import { FaArrowLeft } from "react-icons/fa";
 import { Button } from "../";
 
 import styles from "./styles.module.scss";
-import { useImageStore } from "../../Store/useImageStore";
+import { editImageActions, useImageStore } from "../../Store/useImageStore";
 
 export function Header() {
-  const step = useImageStore((state) => state.step);
-  const setStep = useImageStore((state) => state.setStep);
-  const reset = useImageStore((state) => state.reset);
-  const imageSrc = useImageStore((state) => state.imageSrc);
+  const state = useImageStore((store) => store.state);
+  const dispatch = useImageStore((store) => store.dispatch);
 
-  const isFirstStep = step === "selectImage";
-  const isEditStep = step === "edit";
+  const isFirstStep = state.step === "selectImage";
+  const isEditStep = state.step === "edit";
 
   function handleReturn() {
     const stepToGoBack = isEditStep ? "selectImage" : "edit";
-    setStep(stepToGoBack);
+    dispatch(editImageActions.setStep(stepToGoBack));
   }
 
   function clearImagesData() {
-    reset();
+    dispatch(editImageActions.reset());
   }
 
   return (
@@ -31,7 +29,7 @@ export function Header() {
           </Button>
         )}
       </div>
-      {!!imageSrc && (
+      {!!state.imageSrc && (
         <Button
           onClick={clearImagesData}
           variant={"app_button_text"}

@@ -3,13 +3,12 @@ import { useImageStore } from "../../../Store/useImageStore";
 import styles from "./styles.module.scss";
 
 export function Download() {
-  const imageOut = useImageStore((state) => state.imageOut);
-  const imageName = useImageStore((state) => state.imageName);
+  const state = useImageStore((store) => store.state);
 
   const handleDownload = () => {
     const link = document.createElement("a");
-    link.href = imageOut;
-    const name = "imager_" + imageName;
+    link.href = state.imageOut;
+    const name = "imager_" + state.imageName;
     link.setAttribute("download", name);
     document.body.appendChild(link);
     link.click();
@@ -18,7 +17,7 @@ export function Download() {
   return (
     <>
       <div className={styles.app_image_out}>
-        <img src={imageOut} />
+        <img src={state.imageOut} />
       </div>
 
       <Button onClick={handleDownload} variant={"primary_button"}>

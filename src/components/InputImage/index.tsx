@@ -1,12 +1,11 @@
 import { useDropzone } from "react-dropzone";
 import styles from "./styles.module.scss";
 import { useEffect, useState } from "react";
-import { useImageStore } from "../../Store/useImageStore";
+import { editImageActions, useImageStore } from "../../Store/useImageStore";
 
 export function InputImage() {
-  const imageName = useImageStore((state) => state.imageName);
-  const setImageName = useImageStore((state) => state.setImageName);
-  const setImageSrc = useImageStore((state) => state.setImageSrc);
+  const state = useImageStore((store) => store.state);
+  const dispatch = useImageStore((store) => store.dispatch);
 
   const { getRootProps, getInputProps } = useDropzone({
     accept: { "image/*": [] },
@@ -14,8 +13,8 @@ export function InputImage() {
     onDrop: (acceptedFiles) => {
       const imageFile = acceptedFiles[0];
       const imageUrl = URL.createObjectURL(imageFile);
-      setImageName(imageFile.name);
-      setImageSrc(imageUrl);
+      dispatch(editImageActions.setImageName(imageFile.name));
+      dispatch(editImageActions.setImageSrc(imageUrl));
       setIsVisible(false);
     },
   });
@@ -41,7 +40,7 @@ export function InputImage() {
       <div className={styles.image_input} {...getRootProps()}>
         <input id="image_input" {...getInputProps()} />
       </div>
-      <label htmlFor="image_input">{imageName}</label>
+      <label htmlFor="image_input">{state.imageName}</label>
     </div>
   );
 }

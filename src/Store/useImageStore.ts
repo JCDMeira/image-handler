@@ -19,9 +19,9 @@ type ImageStoreState = {
 export type EditingImageStep = "selectImage" | "edit" | "download";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-type dispatchAction = { type: keyof typeof editImageActions; payload?: any };
+type dispatchAction = { type: keyof typeof ImageActions; payload?: any };
 
-export const editImageActions = {
+export const ImageActions = {
   setStep: (step: EditingImageStep): dispatchAction => ({
     type: "setStep",
     payload: step,

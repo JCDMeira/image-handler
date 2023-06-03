@@ -1,12 +1,12 @@
 import { AspectRatioBox, Button, ImageCrop, RotateSlider } from "../../";
-import { editImageActions, useImageStore } from "../../../Store/useImageStore";
+import { ImageActions, useImageStore } from "../../../Store/useImageStore";
 import styles from "./styles.module.scss";
 
 export function Edit() {
   const dispatch = useImageStore((store) => store.dispatch);
 
   function handleApply() {
-    dispatch(editImageActions.setStep("download"));
+    dispatch(ImageActions.setStep("download"));
   }
 
   return (

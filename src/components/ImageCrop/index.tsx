@@ -8,7 +8,7 @@ import ReactCrop, {
 
 import "react-image-crop/dist/ReactCrop.css";
 import { canvasPreview } from "./canvasPreview";
-import { editImageActions, useImageStore } from "../../Store/useImageStore";
+import { ImageActions, useImageStore } from "../../Store/useImageStore";
 
 function centerAspectCrop(
   mediaWidth: number,
@@ -59,7 +59,7 @@ export function ImageCrop() {
         state.rotate
       );
       const imageOut = canvas.toDataURL();
-      dispatch(editImageActions.setImageOut(imageOut));
+      dispatch(ImageActions.setImageOut(imageOut));
     }
 
     setTimeout(updateImageOut, 200);

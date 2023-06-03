@@ -1,7 +1,7 @@
 import { useDropzone } from "react-dropzone";
 import styles from "./styles.module.scss";
 import { useEffect, useState } from "react";
-import { editImageActions, useImageStore } from "../../Store/useImageStore";
+import { ImageActions, useImageStore } from "../../Store/useImageStore";
 
 export function InputImage() {
   const state = useImageStore((store) => store.state);
@@ -13,8 +13,8 @@ export function InputImage() {
     onDrop: (acceptedFiles) => {
       const imageFile = acceptedFiles[0];
       const imageUrl = URL.createObjectURL(imageFile);
-      dispatch(editImageActions.setImageName(imageFile.name));
-      dispatch(editImageActions.setImageSrc(imageUrl));
+      dispatch(ImageActions.setImageName(imageFile.name));
+      dispatch(ImageActions.setImageSrc(imageUrl));
       setIsVisible(false);
     },
   });

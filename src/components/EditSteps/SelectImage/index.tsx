@@ -1,5 +1,5 @@
 import { Button } from "../../";
-import { editImageActions, useImageStore } from "../../../Store/useImageStore";
+import { ImageActions, useImageStore } from "../../../Store/useImageStore";
 import { InputImage } from "../../InputImage";
 import styles from "./styles.module.scss";
 
@@ -20,7 +20,7 @@ export function SelectImage() {
       <div className={styles.app_buttons_box}>
         <Button
           disabled={!state.imageSrc}
-          onClick={() => dispatch(editImageActions.setStep("edit"))}
+          onClick={() => dispatch(ImageActions.setStep("edit"))}
           variant={"primary_button"}
         >
           Edit

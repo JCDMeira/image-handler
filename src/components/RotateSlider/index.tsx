@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FaMinus } from "react-icons/fa";
 import styles from "./styles.module.scss";
-import { editImageActions, useImageStore } from "../../Store/useImageStore";
+import { ImageActions, useImageStore } from "../../Store/useImageStore";
 
 const itemsList = new Array(20).fill(null).map((_, index) => index);
 
@@ -13,7 +13,7 @@ export function RotateSlider() {
   const [isMoving, setIsMoving] = useState(false);
 
   function handleSliderWeel(value: number) {
-    dispatch(editImageActions.setRotate(value));
+    dispatch(ImageActions.setRotate(value));
   }
 
   function changeRotate(value: number) {

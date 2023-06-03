@@ -1,5 +1,5 @@
 import { Button } from "../";
-import { editImageActions, useImageStore } from "../../Store/useImageStore";
+import { ImageActions, useImageStore } from "../../Store/useImageStore";
 import styles from "./styles.module.scss";
 
 export function AspectRatioBox() {
@@ -9,7 +9,7 @@ export function AspectRatioBox() {
   const aspectsList = Object.keys(state.aspects);
 
   function handleSelectAspect(aspectKey: string) {
-    dispatch(editImageActions.setAspect(aspectKey));
+    dispatch(ImageActions.setAspect(aspectKey));
   }
 
   return (

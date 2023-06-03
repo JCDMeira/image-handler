@@ -1,7 +1,8 @@
 import { useDropzone } from "react-dropzone";
 import styles from "./styles.module.scss";
 import { useEffect, useState } from "react";
-import { ImageActions, useImageStore } from "../../Store/useImageStore";
+import { useImageStore } from "../../Store/useImageStore";
+import { ImageActions } from "../../actions/ImageActions.action";
 
 export function InputImage() {
   const state = useImageStore((store) => store.state);

@@ -8,7 +8,8 @@ import ReactCrop, {
 
 import "react-image-crop/dist/ReactCrop.css";
 import { canvasPreview } from "./canvasPreview";
-import { ImageActions, useImageStore } from "../../Store/useImageStore";
+import { useImageStore } from "../../Store/useImageStore";
+import { ImageActions } from "../../actions/ImageActions.action";
 
 function centerAspectCrop(
   mediaWidth: number,

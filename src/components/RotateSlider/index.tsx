@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { FaMinus } from "react-icons/fa";
 import styles from "./styles.module.scss";
-import { ImageActions, useImageStore } from "../../Store/useImageStore";
+import { useImageStore } from "../../Store/useImageStore";
+import { ImageActions } from "../../actions/ImageActions.action";
 
 const itemsList = new Array(20).fill(null).map((_, index) => index);
 

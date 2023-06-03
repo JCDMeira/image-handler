@@ -1,14 +1,15 @@
-import { useEditImageStore } from "../../../FluxCore/contexts/imageContext";
 import { Button } from "../../";
+import { useImageStore } from "../../../Store/useImageStore";
 import styles from "./styles.module.scss";
 
 export function Download() {
-  const { state } = useEditImageStore();
+  const imageOut = useImageStore((state) => state.imageOut);
+  const imageName = useImageStore((state) => state.imageName);
 
   const handleDownload = () => {
     const link = document.createElement("a");
-    link.href = state.imageOut;
-    const name = "imager_" + state.imageName;
+    link.href = imageOut;
+    const name = "imager_" + imageName;
     link.setAttribute("download", name);
     document.body.appendChild(link);
     link.click();
@@ -17,7 +18,7 @@ export function Download() {
   return (
     <>
       <div className={styles.app_image_out}>
-        <img src={state.imageOut} />
+        <img src={imageOut} />
       </div>
 
       <Button onClick={handleDownload} variant={"primary_button"}>

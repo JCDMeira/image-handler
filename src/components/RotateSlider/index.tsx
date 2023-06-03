@@ -1,19 +1,19 @@
 import React, { useState } from "react";
 import { FaMinus } from "react-icons/fa";
-import { useEditImageStore } from "../../FluxCore/contexts/imageContext";
-import { editImageActions } from "../../FluxCore/actions/EditImage";
 import styles from "./styles.module.scss";
+import { useImageStore } from "../../Store/useImageStore";
 
 const itemsList = new Array(20).fill(null).map((_, index) => index);
 
 export function RotateSlider() {
-  const { state, dispatch } = useEditImageStore();
+  const rotate = useImageStore((state) => state.rotate);
+  const setRotate = useImageStore((state) => state.setRotate);
 
   const [startPosition, setStartPosition] = useState(0);
   const [isMoving, setIsMoving] = useState(false);
 
   function handleSliderWeel(value: number) {
-    dispatch(editImageActions.setRotate(value));
+    setRotate(value);
   }
 
   function changeRotate(value: number) {
@@ -28,7 +28,7 @@ export function RotateSlider() {
   function handleWeel(event: React.WheelEvent) {
     const position = event.deltaY;
 
-    const currentValue = position < 0 ? state.rotate + 1 : state.rotate - 1;
+    const currentValue = position < 0 ? rotate + 1 : rotate - 1;
     changeRotate(currentValue);
   }
 
@@ -47,13 +47,13 @@ export function RotateSlider() {
 
     if (deltaX < 18 && !(deltaX < -18)) return;
 
-    const currentValue = state.rotate + Math.trunc(deltaX / 18);
+    const currentValue = rotate + Math.trunc(deltaX / 18);
     changeRotate(currentValue);
   }
 
   return (
     <div className={styles.app_rotate_slider}>
-      <span className={styles.app_rotate_slider_label}>{state.rotate}°</span>
+      <span className={styles.app_rotate_slider_label}>{rotate}°</span>
       <span
         className={`${styles.app_rotate_slider_pipes} ${
           isMoving && styles.app_rotate_slider_moving
@@ -66,7 +66,7 @@ export function RotateSlider() {
       >
         {itemsList.map((item) => (
           <span key={item} className={`${styles.app_rotate_slider_item} `}>
-            <FaMinus size={0 === state.rotate ? 22 : 18} />
+            <FaMinus size={0 === rotate ? 22 : 18} />
           </span>
         ))}
       </span>

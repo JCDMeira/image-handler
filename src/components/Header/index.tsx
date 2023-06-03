@@ -1,23 +1,25 @@
 import { FaArrowLeft } from "react-icons/fa";
-import { editImageActions } from "../../FluxCore/actions/EditImage";
-import { useEditImageStore } from "../../FluxCore/contexts/imageContext";
 import { Button } from "../";
 
 import styles from "./styles.module.scss";
+import { useImageStore } from "../../Store/useImageStore";
 
 export function Header() {
-  const { state, dispatch } = useEditImageStore();
+  const step = useImageStore((state) => state.step);
+  const setStep = useImageStore((state) => state.setStep);
+  const reset = useImageStore((state) => state.reset);
+  const imageSrc = useImageStore((state) => state.imageSrc);
 
-  const isFirstStep = state.step === "selectImage";
-  const isEditStep = state.step === "edit";
+  const isFirstStep = step === "selectImage";
+  const isEditStep = step === "edit";
 
   function handleReturn() {
     const stepToGoBack = isEditStep ? "selectImage" : "edit";
-    dispatch(editImageActions.setStep(stepToGoBack));
+    setStep(stepToGoBack);
   }
 
   function clearImagesData() {
-    dispatch(editImageActions.onReset());
+    reset();
   }
 
   return (
@@ -29,7 +31,7 @@ export function Header() {
           </Button>
         )}
       </div>
-      {!!state.imageSrc && (
+      {!!imageSrc && (
         <Button
           onClick={clearImagesData}
           variant={"app_button_text"}

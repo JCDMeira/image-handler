@@ -19,7 +19,7 @@ export interface ImageStore {
   reset: () => void;
 }
 
-type EditingImageStep = "selectImage" | "edit" | "download";
+export type EditingImageStep = "selectImage" | "edit" | "download";
 
 export const useImageStore = create<ImageStore>((set) => ({
   step: "selectImage",

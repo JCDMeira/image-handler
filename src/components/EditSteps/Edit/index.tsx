@@ -1,13 +1,12 @@
-import { editImageActions } from "../../../FluxCore/actions/EditImage";
-import { useEditImageStore } from "../../../FluxCore/contexts/imageContext";
 import { AspectRatioBox, Button, ImageCrop, RotateSlider } from "../../";
+import { useImageStore } from "../../../Store/useImageStore";
 import styles from "./styles.module.scss";
 
 export function Edit() {
-  const { dispatch } = useEditImageStore();
+  const setStep = useImageStore((state) => state.setStep);
 
   function handleApply() {
-    dispatch(editImageActions.setStep("download"));
+    setStep("download");
   }
 
   return (

@@ -3,10 +3,9 @@ import React from "react";
 import { SelectImage } from "./SelectImage";
 import { Download } from "./Download";
 import { Edit } from "./Edit";
-import { useEditImageStore } from "../../FluxCore/contexts/imageContext";
-import { StepsKeys } from "../../FluxCore/actions/EditImage";
+import { EditingImageStep, useImageStore } from "../../Store/useImageStore";
 
-const getStep = (step: StepsKeys) => {
+const getStep = (step: EditingImageStep) => {
   return {
     selectImage: <SelectImage />,
     edit: <Edit />,
@@ -15,7 +14,7 @@ const getStep = (step: StepsKeys) => {
 };
 
 export const EditSteps: React.FC = () => {
-  const { state } = useEditImageStore();
+  const step = useImageStore((state) => state.step);
 
-  return getStep(state.step);
+  return getStep(step);
 };

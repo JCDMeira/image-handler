@@ -7,10 +7,8 @@ import ReactCrop, {
 } from "react-image-crop";
 
 import "react-image-crop/dist/ReactCrop.css";
-import { editImageActions } from "../../FluxCore/actions/EditImage";
-
-import { useEditImageStore } from "../../FluxCore/contexts/imageContext";
 import { canvasPreview } from "./canvasPreview";
+import { useImageStore } from "../../Store/useImageStore";
 
 function centerAspectCrop(
   mediaWidth: number,
@@ -37,33 +35,33 @@ export function ImageCrop() {
   const [crop, setCrop] = useState<Crop>();
   const [completedCrop, setCompletedCrop] = useState<PixelCrop>();
 
-  const { state, dispatch } = useEditImageStore();
-  const aspect = state.aspects[state.selectedAspect];
+  const setImageOut = useImageStore((state) => state.setImageOut);
+  const aspects = useImageStore((state) => state.aspects);
+  const selectedAspect = useImageStore((state) => state.selectedAspect);
+  const imageSrc = useImageStore((state) => state.imageSrc);
+  const rotate = useImageStore((state) => state.rotate);
+  const scale = useImageStore((state) => state.scale);
+
+  const aspect = aspects[selectedAspect];
 
   useEffect(() => {
     if (!imgRef.current || !aspect) return;
     const { width, height } = imgRef.current;
     setCrop(centerAspectCrop(width, height, aspect));
-  }, [state.imageSrc, state.rotate, state.scale, aspect]);
+  }, [imageSrc, rotate, scale, aspect]);
 
   useEffect(() => {
     function updateImageOut() {
       if (!completedCrop || !imgRef.current) return;
 
       const canvas = document.createElement("canvas");
-      canvasPreview(
-        imgRef.current,
-        canvas,
-        completedCrop,
-        state.scale,
-        state.rotate
-      );
+      canvasPreview(imgRef.current, canvas, completedCrop, scale, rotate);
       const imageOut = canvas.toDataURL();
-      dispatch(editImageActions.setImageOut(imageOut));
+      setImageOut(imageOut);
     }
 
     setTimeout(updateImageOut, 200);
-  }, [completedCrop, dispatch, state.rotate, state.scale]);
+  }, [completedCrop, rotate, scale, setImageOut]);
 
   function onImageLoad(e: React.SyntheticEvent<HTMLImageElement>) {
     const { width, height } = e.currentTarget;
@@ -80,14 +78,14 @@ export function ImageCrop() {
       crop={crop}
       onChange={(_, percentCrop) => setCrop(percentCrop)}
       onComplete={(c) => setCompletedCrop(c)}
-      aspect={state.aspects[state.selectedAspect] || undefined}
+      aspect={aspects[selectedAspect] || undefined}
     >
       <img
         ref={imgRef}
         alt="Crop me"
-        src={state.imageSrc}
+        src={imageSrc}
         style={{
-          transform: `scale(${state.scale}) rotate(${state.rotate}deg)`,
+          transform: `scale(${scale}) rotate(${rotate}deg)`,
           borderRadius: "0.5rem",
         }}
         onLoad={onImageLoad}

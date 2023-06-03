@@ -1,11 +1,12 @@
-import { editImageActions } from "../../FluxCore/actions/EditImage";
 import { useDropzone } from "react-dropzone";
-import { useEditImageStore } from "../../FluxCore/contexts/imageContext";
 import styles from "./styles.module.scss";
 import { useEffect, useState } from "react";
+import { useImageStore } from "../../Store/useImageStore";
 
 export function InputImage() {
-  const { state, dispatch } = useEditImageStore();
+  const imageName = useImageStore((state) => state.imageName);
+  const setImageName = useImageStore((state) => state.setImageName);
+  const setImageSrc = useImageStore((state) => state.setImageSrc);
 
   const { getRootProps, getInputProps } = useDropzone({
     accept: { "image/*": [] },
@@ -13,8 +14,8 @@ export function InputImage() {
     onDrop: (acceptedFiles) => {
       const imageFile = acceptedFiles[0];
       const imageUrl = URL.createObjectURL(imageFile);
-      dispatch(editImageActions.setImageName(imageFile.name));
-      dispatch(editImageActions.setImageSrc(imageUrl));
+      setImageName(imageFile.name);
+      setImageSrc(imageUrl);
       setIsVisible(false);
     },
   });
@@ -40,7 +41,7 @@ export function InputImage() {
       <div className={styles.image_input} {...getRootProps()}>
         <input id="image_input" {...getInputProps()} />
       </div>
-      <label htmlFor="image_input">{state.imageName}</label>
+      <label htmlFor="image_input">{imageName}</label>
     </div>
   );
 }

@@ -1,14 +1,16 @@
-import { editImageActions } from "../../FluxCore/actions/EditImage";
-import { useEditImageStore } from "../../FluxCore/contexts/imageContext";
 import { Button } from "../";
+import { useImageStore } from "../../Store/useImageStore";
 import styles from "./styles.module.scss";
 
 export function AspectRatioBox() {
-  const { state, dispatch } = useEditImageStore();
-  const aspectsList = Object.keys(state.aspects);
+  const aspects = useImageStore((state) => state.aspects);
+  const setAspect = useImageStore((state) => state.setAspect);
+  const selectedAspect = useImageStore((state) => state.selectedAspect);
+
+  const aspectsList = Object.keys(aspects);
 
   function handleSelectAspect(aspectKey: string) {
-    dispatch(editImageActions.setAspect(aspectKey));
+    setAspect(aspectKey);
   }
 
   return (
@@ -21,10 +23,10 @@ export function AspectRatioBox() {
         >
           <span
             className={`${styles.aspect_span} ${
-              state.selectedAspect === aspectKey && styles.aspect_span_selected
+              selectedAspect === aspectKey && styles.aspect_span_selected
             }`}
             style={{
-              height: `calc(2.5rem / ${state.aspects[aspectKey] || 1})`,
+              height: `calc(2.5rem / ${aspects[aspectKey] || 1})`,
             }}
           />
           <label className={`${styles.aspect_label}`}>{aspectKey}</label>

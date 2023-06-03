@@ -2,7 +2,7 @@ import { create } from "zustand";
 
 export interface ImageStore {
   state: ImageStoreState;
-  dispatch: (action: teste) => void;
+  dispatch: (action: dispatchAction) => void;
 }
 
 type ImageStoreState = {
@@ -19,35 +19,38 @@ type ImageStoreState = {
 export type EditingImageStep = "selectImage" | "edit" | "download";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-type teste = { type: keyof typeof editImageActions; payload?: any };
+type dispatchAction = { type: keyof typeof editImageActions; payload?: any };
 
 export const editImageActions = {
-  setStep: (step: EditingImageStep): teste => ({
+  setStep: (step: EditingImageStep): dispatchAction => ({
     type: "setStep",
     payload: step,
   }),
-  setRotate: (rotate: number): teste => ({
+  setRotate: (rotate: number): dispatchAction => ({
     type: "setRotate",
     payload: rotate,
   }),
-  setScale: (scale: number): teste => ({ type: "setScale", payload: scale }),
-  setAspect: (aspect: string): teste => ({
+  setScale: (scale: number): dispatchAction => ({
+    type: "setScale",
+    payload: scale,
+  }),
+  setAspect: (aspect: string): dispatchAction => ({
     type: "setAspect",
     payload: aspect,
   }),
-  setImageName: (imageName: string): teste => ({
+  setImageName: (imageName: string): dispatchAction => ({
     type: "setImageName",
     payload: imageName,
   }),
-  setImageSrc: (imageSrc: string): teste => ({
+  setImageSrc: (imageSrc: string): dispatchAction => ({
     type: "setImageSrc",
     payload: imageSrc,
   }),
-  setImageOut: (imageOut: string): teste => ({
+  setImageOut: (imageOut: string): dispatchAction => ({
     type: "setImageOut",
     payload: imageOut,
   }),
-  reset: (): teste => ({ type: "reset" }),
+  reset: (): dispatchAction => ({ type: "reset" }),
 };
 
 const initialState = {
@@ -72,39 +75,34 @@ const initialState = {
 
 export const useImageStore = create<ImageStore>((set) => ({
   state: initialState,
-  dispatch: (action: teste) => {
-    console.log(action);
+  dispatch: (action: dispatchAction) => {
     switch (action.type) {
       case "setStep":
-        () =>
-          set((store) => ({
-            ...store,
-            state: { ...store.state, step: action.payload },
-          }));
+        set((store) => ({
+          ...store,
+          state: { ...store.state, step: action.payload },
+        }));
         break;
 
       case "setRotate":
-        () =>
-          set((store) => ({
-            ...store,
-            state: { ...store.state, rotate: action.payload },
-          }));
+        set((store) => ({
+          ...store,
+          state: { ...store.state, rotate: action.payload },
+        }));
         break;
 
       case "setScale":
-        () =>
-          set((store) => ({
-            ...store,
-            state: { ...store.state, scale: action.payload },
-          }));
+        set((store) => ({
+          ...store,
+          state: { ...store.state, scale: action.payload },
+        }));
         break;
 
       case "setAspect":
-        () =>
-          set((store) => ({
-            ...store,
-            state: { ...store.state, selectedAspect: action.payload },
-          }));
+        set((store) => ({
+          ...store,
+          state: { ...store.state, selectedAspect: action.payload },
+        }));
         break;
 
       case "setImageName":
@@ -122,21 +120,17 @@ export const useImageStore = create<ImageStore>((set) => ({
         break;
 
       case "setImageOut":
-        () =>
-          set((store) => ({
-            ...store,
-            state: { ...store.state, imageOut: action.payload },
-          }));
+        set((store) => ({
+          ...store,
+          state: { ...store.state, imageOut: action.payload },
+        }));
         break;
 
       case "reset":
-        () => {
-          console.log("batata");
-          set((store) => ({
-            ...store,
-            state: initialState,
-          }));
-        };
+        set((store) => ({
+          ...store,
+          state: initialState,
+        }));
         break;
 
       default:

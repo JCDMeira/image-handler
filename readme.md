@@ -18,6 +18,7 @@
 - [Proposta](#id01)
   - [O Desafio](#id01.1)
     - [Objetivos do Projeto ](#id01.1.1)
+    - [zustand como modelo FLUX ](#id01.1.2)
 - [Tecnologias Utilizadas](#id02)
 - [Pré-requisitos](#id03)
 - [Instalação](#id04)
@@ -53,6 +54,21 @@ Os principais objetivos deste projeto são:
 3. Melhorar a experiência do usuário através de alterações no fluxo de navegação, layout e interações.
 4. Otimizar a performance do aplicativo, identificando e corrigindo gargalos.
 5. Refatorar o código existente para aproveitar os benefícios dos React Hooks, em especial useReducer e useContext.
+
+### Zustand como modelo FLUX <a name="id01.1.2"></a>
+
+Segunda parte desse projeto é uma POC sobre a hipotese de que zustand já se adequa como flux.
+
+Analisando o modelo flux em comparativo ao zustand, ambos mantém o estado sempre centralizado, e mediante ao acionar uma função, sejá ela por dispatch no modelo de reducers ou uma função da store do zustand, sempre se busca isolar a manipulação do estado de forma externa.
+Portanto se comparou o modelo usando zustand como um modelo flux por si só. Dessa forma essa POC busca comprovar a hipotese de que o zustand já se adequa como um modelo FLUX.
+
+Os principais objetivos desta POC:
+
+1. Refactorar o projeto para usar zustand.
+2. Utilizando tudo por dentro de uma store do zustand para manter cada estado como si só.
+3. Adequar o modelo para sustentar um state e fazer todas alterações via dispatch.
+
+Essa POC é considerado um sucesso ao fazer funcionar uma store do zustand com um state e um dispatch apenas.
 
 # 🛠 Feito com <a name="id02"></a>
 

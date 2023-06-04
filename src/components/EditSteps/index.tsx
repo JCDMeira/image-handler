@@ -3,7 +3,10 @@ import React from "react";
 import { SelectImage } from "./SelectImage";
 import { Download } from "./Download";
 import { Edit } from "./Edit";
-import { EditingImageStep, useImageStore } from "../../Store/useImageStore";
+import {
+  EditingImageStep,
+  useImageStore,
+} from "../../Store/useImageStore.store";
 
 const getStep = (step: EditingImageStep) => {
   return {

@@ -1,4 +1,4 @@
-import { EditingImageStep } from "../Store/useImageStore";
+import { EditingImageStep } from "../Store/useImageStore.store";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type dispatchAction = { type: keyof typeof ImageActions; payload?: any };

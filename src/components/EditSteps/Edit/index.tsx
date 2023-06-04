@@ -1,5 +1,5 @@
 import { AspectRatioBox, Button, ImageCrop, RotateSlider } from "../../";
-import { useImageStore } from "../../../Store/useImageStore";
+import { useImageStore } from "../../../Store/useImageStore.store";
 import { ImageActions } from "../../../actions/ImageActions.action";
 import styles from "./styles.module.scss";
 

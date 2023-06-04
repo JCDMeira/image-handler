@@ -1,5 +1,5 @@
 import { Button } from "../../";
-import { useImageStore } from "../../../Store/useImageStore";
+import { useImageStore } from "../../../Store/useImageStore.store";
 import { ImageActions } from "../../../actions/ImageActions.action";
 import { InputImage } from "../../InputImage";
 import styles from "./styles.module.scss";

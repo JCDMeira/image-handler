@@ -2,7 +2,7 @@ import { FaArrowLeft } from "react-icons/fa";
 import { Button } from "../";
 
 import styles from "./styles.module.scss";
-import { useImageStore } from "../../Store/useImageStore";
+import { useImageStore } from "../../Store/useImageStore.store";
 import { ImageActions } from "../../actions/ImageActions.action";
 
 export function Header() {
